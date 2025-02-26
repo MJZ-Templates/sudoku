@@ -51,18 +51,18 @@ function isSameBox(row1, col1, row2, col2) {
 }
 
 function isPuzzleComplete() {
-  // 1️⃣ 빈 셀이 있는지 체크 (공백 문자열 포함)
+  // 1️⃣ Check if there are any empty cells (including blank strings)
   const hasEmptyCells = [...document.querySelectorAll(".cell")].some(
     (cell) => cell.textContent.trim() === ""
   );
   if (hasEmptyCells) return false;
 
-  // 2️⃣ 중복된 숫자가 있는지 체크
+  // 2️⃣ Check if there are any duplicate numbers
   const hasError = [...document.querySelectorAll(".cell")].some((cell) =>
     cell.classList.contains("invalid")
   );
 
-  return !hasError; // 중복이 없으면 true 반환 (퍼즐 성공)
+  return !hasError; // Return true if there are no duplicates (puzzle is complete)
 }
 
 export { validateBoard, isPuzzleComplete };

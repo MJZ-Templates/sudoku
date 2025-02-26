@@ -15,7 +15,7 @@ function attachEventListeners() {
 
   document.querySelectorAll(".num-btn").forEach((button) => {
     button.addEventListener("click", (e) => {
-      console.log("🔢 숫자 버튼 클릭됨:", e.target.dataset.num);
+      console.log("🔢 Number button clicked:", e.target.dataset.num);
       insertNumber(e.target.dataset.num);
     });
   });
@@ -29,7 +29,7 @@ function resetBoard() {
 function enableKeyboardInput() {
   document.addEventListener("keydown", (event) => {
     if (event.key >= "1" && event.key <= "9") {
-      console.log(`⌨️ 키 입력 감지: ${event.key}`);
+      console.log(`⌨️ Key press detected: ${event.key}`);
       insertNumber(event.key);
     }
   });

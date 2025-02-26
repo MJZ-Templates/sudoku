@@ -1,21 +1,21 @@
 import { getSelectedCell } from "./board.js";
 import { validateBoard, isPuzzleComplete } from "./validator.js";
-import { showGameResult } from "./board.js"; // 메시지 표시 함수 추가
+import { showGameResult } from "./board.js"; // Added function to display messages
 
 let moveHistory = [];
 
-// 숫자 삽입 함수
+// Function to insert a number
 function insertNumber(num) {
-  console.log("📌 insertNumber() 실행됨! 숫자:", num);
+  console.log("📌 insertNumber() executed! Number:", num);
 
   const selectedCell = getSelectedCell();
   if (!selectedCell) {
-    console.warn("🚨 먼저 셀을 선택하세요.");
+    console.warn("🚨 Please select a cell first.");
     return;
   }
 
   if (selectedCell.classList.contains("fixed")) {
-    console.warn("🚨 고정된 셀에는 값을 입력할 수 없습니다.");
+    console.warn("🚨 Cannot enter a value in a fixed cell.");
     return;
   }
 
@@ -26,34 +26,34 @@ function insertNumber(num) {
 
   selectedCell.textContent = num;
 
-  // 숫자 입력 후 전체 보드 검증
+  // Validate the entire board after inserting a number
   validateBoard();
 
-  // 퍼즐이 완성되었는지 체크
+  // Check if the puzzle is complete
   if (isPuzzleComplete()) {
-    showGameResult(true); // 퍼즐 성공 메시지
+    showGameResult(true); // Display success message
   } else if (
     ![...document.querySelectorAll(".cell")].some(
       (cell) => cell.textContent.trim() === ""
     )
   ) {
-    // 빈칸이 없는데 퍼즐이 틀렸다면 실패 메시지 표시
+    // If there are no empty cells but the puzzle is incorrect, display a failure message
     showGameResult(false);
   }
 }
 
-// Undo 함수
+// Undo function
 function undoMove() {
-  console.log("⏪ Undo 함수 실행됨!");
-  console.log("📌 현재 moveHistory 상태:", moveHistory);
+  console.log("⏪ Undo function executed!");
+  console.log("📌 Current moveHistory state:", moveHistory);
 
   if (moveHistory.length === 0) {
-    console.log("🚨 Undo 할 내역 없음!");
+    console.log("🚨 No undo history!");
     return;
   }
 
   const lastMove = moveHistory.pop();
-  console.log("⏪ 되돌릴 데이터:", lastMove);
+  console.log("⏪ Undoing data:", lastMove);
 
   const boardCells = document.querySelectorAll(".cell");
   const targetCell = boardCells[lastMove.cellIndex];
@@ -61,22 +61,23 @@ function undoMove() {
   if (targetCell) {
     targetCell.textContent = lastMove.prevValue;
     targetCell.classList.remove("selected");
-    console.log("✅ Undo 완료: 셀 값 복구됨");
+    console.log("✅ Undo complete: Cell value restored");
   }
 
   validateBoard();
 }
 
+// Function to delete a cell's content
 function deleteCell() {
   const selectedCell = getSelectedCell();
 
   if (!selectedCell) {
-    console.warn("🚨 먼저 셀을 선택하세요.");
+    console.warn("🚨 Please select a cell first.");
     return;
   }
 
   if (selectedCell.classList.contains("fixed")) {
-    console.warn("🚨 고정된 셀에는 값을 삭제할 수 없습니다.");
+    console.warn("🚨 Cannot delete a value from a fixed cell.");
     return;
   }
 
@@ -87,7 +88,7 @@ function deleteCell() {
 
   selectedCell.textContent = "";
 
-  console.log("❌ 셀 내용 삭제됨!");
+  console.log("❌ Cell content deleted!");
   validateBoard();
 }
 

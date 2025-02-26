@@ -4,7 +4,7 @@ function createBoard(puzzle) {
   const board = document.getElementById("sudoku-board");
 
   if (!board) {
-    console.error("❌ sudoku-board 요소를 찾을 수 없음");
+    console.error("❌ Cannot find the 'sudoku-board' element");
     return;
   }
 
@@ -20,7 +20,7 @@ function createBoard(puzzle) {
       cell.classList.add("fixed");
     } else {
       cell.addEventListener("click", () => {
-        console.log("📌 셀 클릭됨:", i);
+        console.log("📌 Cell clicked:", i);
         selectCell(cell);
       });
     }
@@ -39,7 +39,10 @@ function selectCell(cell) {
   selectedCell.classList.add("selected");
   highlightRelatedCells(selectedCell);
 
-  console.log("✅ selectCell() 실행됨! 선택된 셀:", selectedCell.dataset.index);
+  console.log(
+    "✅ selectCell() executed! Selected cell:",
+    selectedCell.dataset.index
+  );
 }
 
 function highlightRelatedCells(cell) {
@@ -78,8 +81,8 @@ function getSelectedCell() {
 
 function showGameResult(isSuccess) {
   const message = isSuccess
-    ? "성공적으로 해결했습니다! 🎉"
-    : "스도쿠 규칙에 맞지 않는 숫자가 있습니다. 🥲";
+    ? "Sudoku solved successfully! 🎉"
+    : "There are numbers that do not follow Sudoku rules. 🥲";
 
   setTimeout(() => alert(message), 100);
 }

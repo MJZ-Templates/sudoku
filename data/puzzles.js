@@ -17,8 +17,8 @@ const puzzles = [
 // ];
 
 /**
- * Medium 난이도 퍼즐을 랜덤 반환
- * @returns {string} 81자리 문자열
+ * Returns a random puzzle of medium difficulty.
+ * @returns {string} A string of 81 characters.
  */
 function getRandomPuzzle() {
   return puzzles[Math.floor(Math.random() * puzzles.length)];
