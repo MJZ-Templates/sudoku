@@ -43,10 +43,6 @@ body {
   justify-content: center;
 }
 
-.cell.selected {
-  background-color: lightblue;
-}
-
 .cell.invalid {
   color: red;
 }
