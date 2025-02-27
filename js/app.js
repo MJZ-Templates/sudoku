@@ -12,6 +12,7 @@ function attachEventListeners() {
   document.getElementById("new-game").addEventListener("click", resetBoard);
   document.getElementById("undo").addEventListener("click", undoMove);
   document.getElementById("delete").addEventListener("click", deleteCell);
+  document.getElementById("difficulty").addEventListener("change", resetBoard);
 
   document.querySelectorAll(".num-btn").forEach((button) => {
     button.addEventListener("click", (e) => {
@@ -22,7 +23,8 @@ function attachEventListeners() {
 }
 
 function resetBoard() {
-  const puzzle = getRandomPuzzle();
+  const difficulty = document.getElementById("difficulty").value;
+  const puzzle = getRandomPuzzle(difficulty);
   createBoard(puzzle);
 }
 
