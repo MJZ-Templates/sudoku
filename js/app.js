@@ -42,13 +42,13 @@ function updateDifficulty() {
   const difficulty = document.getElementById("difficulty").value;
   const newUrl = new URL(window.location);
   newUrl.searchParams.set("difficulty", difficulty);
-  window.history.replaceState({}, "", newUrl); // URL 업데이트
+  window.history.replaceState({}, "", newUrl); // Update URL
   resetBoard();
 }
 
 function getDifficultyFromQuery() {
   const urlParams = new URLSearchParams(window.location.search);
-  return urlParams.get("difficulty") || "medium"; // 기본값은 medium
+  return urlParams.get("difficulty") || "medium"; // Default to "medium" if no parameter is found
 }
 
 function setDifficultyFromQuery() {
